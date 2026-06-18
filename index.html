@@ -1,0 +1,1948 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WINGED SOLAR™ — Deployable Solar Infrastructure</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        charcoal: '#111111',
+                        graphite: '#2B2B2B',
+                        steel: '#5A5A5A',
+                        electric: '#00AEEF',
+                        energy: '#FF7A00',
+                        metallic: '#C0C0C0',
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                        grotesk: ['Space Grotesk', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #2B2B2B;
+            background: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #111111; }
+        ::-webkit-scrollbar-thumb { background: #00AEEF; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #FF7A00; }
+
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .header.transparent {
+            background: rgba(17, 17, 17, 0.15);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .header.solid {
+            background: rgba(17, 17, 17, 0.97);
+            border-bottom: 1px solid rgba(0, 174, 239, 0.15);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+
+        .nav-link {
+            position: relative;
+            color: rgba(255,255,255,0.75);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            transition: color 0.3s ease;
+            text-decoration: none;
+            padding: 6px 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00AEEF, #FF7A00);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover { color: #FFFFFF; }
+        .nav-link:hover::after { width: 100%; }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background:
+                linear-gradient(135deg, rgba(17,17,17,0.55) 0%, rgba(17,17,17,0.35) 50%, rgba(0,174,239,0.08) 100%),
+                url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1920&q=80') center/cover no-repeat;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at 30% 50%, rgba(0,174,239,0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(0, 174, 239, 0.4);
+            border-radius: 50%;
+            animation: particleFloat 15s infinite linear;
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) translateX(100px); opacity: 0; }
+        }
+
+        /* Stat Cards */
+        .stat-card {
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .stat-card:hover {
+            background: rgba(0, 174, 239, 0.1);
+            border-color: rgba(0, 174, 239, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 174, 239, 0.15);
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            background: rgba(0, 174, 239, 0.06);
+            border-color: rgba(0, 174, 239, 0.25);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+        }
+
+        /* Benefit Cards */
+        .benefit-card {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00AEEF, #FF7A00);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .benefit-card:hover::before { transform: scaleX(1); }
+
+        .benefit-card:hover {
+            border-color: rgba(0, 174, 239, 0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        .benefit-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(0,174,239,0.1), rgba(0,174,239,0.05));
+            border: 1px solid rgba(0,174,239,0.15);
+            color: #00AEEF;
+            font-size: 22px;
+            margin-bottom: 20px;
+            transition: all 0.4s ease;
+        }
+
+        .benefit-card:hover .benefit-icon {
+            background: linear-gradient(135deg, #00AEEF, #0090CC);
+            color: #FFFFFF;
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(0,174,239,0.3);
+        }
+
+        /* Product Cards */
+        .product-card {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+            border-color: rgba(0, 174, 239, 0.3);
+        }
+
+        .product-image {
+            position: relative;
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.08);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(0,174,239,0.9);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* Industry Cards */
+        .industry-card {
+            background: #FAFAFA;
+            border: 1px solid #E5E7EB;
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .industry-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,174,239,0.05), rgba(255,122,0,0.05));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .industry-card:hover::before { opacity: 1; }
+
+        .industry-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+            border-color: rgba(0, 174, 239, 0.3);
+        }
+
+        .industry-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 20px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            background: linear-gradient(135deg, #111111, #2B2B2B);
+            color: #00AEEF;
+            transition: all 0.4s ease;
+        }
+
+        .industry-card:hover .industry-icon {
+            background: linear-gradient(135deg, #00AEEF, #0090CC);
+            color: #FFFFFF;
+            transform: rotate(5deg) scale(1.1);
+        }
+
+        /* Timeline */
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 40px;
+            bottom: -30px;
+            width: 2px;
+            background: linear-gradient(180deg, #00AEEF, rgba(0,174,239,0.1));
+        }
+
+        .timeline-item:last-child::before { display: none; }
+
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: #FFFFFF;
+            border: 3px solid #00AEEF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-dot {
+            background: #00AEEF;
+            box-shadow: 0 0 20px rgba(0,174,239,0.4);
+        }
+
+        .timeline-dot::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #00AEEF;
+            transition: background 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-dot::after {
+            background: #FFFFFF;
+        }
+
+        /* Counter Section */
+        .counter-section {
+            background: linear-gradient(135deg, #111111 0%, #1a1a2e 50%, #111111 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .counter-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(0,174,239,0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(255,122,0,0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .counter-card {
+            background: rgba(255,255,255,0.04);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .counter-card:hover {
+            background: rgba(0,174,239,0.08);
+            border-color: rgba(0,174,239,0.25);
+            transform: translateY(-4px);
+        }
+
+        /* CTA Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, #00AEEF, #0090CC);
+            color: #FFFFFF;
+            padding: 14px 32px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: 0.3px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,174,239,0.3);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #0090CC, #007AAB);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,174,239,0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #FFFFFF;
+            padding: 14px 32px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: 0.3px;
+            border: 2px solid rgba(255,255,255,0.25);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-dark {
+            background: linear-gradient(135deg, #111111, #2B2B2B);
+            color: #FFFFFF;
+            padding: 14px 32px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-dark:hover {
+            background: linear-gradient(135deg, #2B2B2B, #3B3B3B);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Form Styles */
+        .form-input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid #E5E7EB;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            color: #2B2B2B;
+            background: #FFFFFF;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-input:focus {
+            border-color: #00AEEF;
+            box-shadow: 0 0 0 3px rgba(0,174,239,0.1);
+        }
+
+        .form-input::placeholder {
+            color: #9CA3AF;
+        }
+
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .fade-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background: rgba(17,17,17,0.98);
+            backdrop-filter: blur(30px);
+            z-index: 1001;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 100px 40px 40px;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.open { right: 0; }
+
+        .mobile-menu .nav-link {
+            display: block;
+            padding: 16px 0;
+            font-size: 18px;
+            color: rgba(255,255,255,0.8);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .mobile-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Grid Pattern Background */
+        .grid-pattern {
+            background-image:
+                linear-gradient(rgba(0,174,239,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,174,239,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        /* Metallic Text */
+        .text-metallic {
+            background: linear-gradient(135deg, #C0C0C0, #FFFFFF, #C0C0C0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #00AEEF, #0090CC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Section Dividers */
+        .section-divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #00AEEF, #FF7A00);
+            border-radius: 2px;
+            margin-bottom: 20px;
+        }
+
+        /* Parallax Container */
+        .parallax-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: -20%;
+            left: 0;
+            right: 0;
+            bottom: -20%;
+            background-size: cover;
+            background-position: center;
+            will-change: transform;
+        }
+
+        /* Smooth Section Transitions */
+        section {
+            position: relative;
+        }
+
+        /* Loading Animation */
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Water Section */
+        .water-section {
+            background: linear-gradient(180deg, #F8F9FA 0%, #FFFFFF 100%);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(180deg, #111111 0%, #0A0A0A 100%);
+        }
+
+        .footer-link {
+            color: rgba(255,255,255,0.55);
+            font-size: 14px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+        }
+
+        .footer-link:hover {
+            color: #00AEEF;
+            padding-left: 4px;
+        }
+
+        .social-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.6);
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .social-icon:hover {
+            background: #00AEEF;
+            border-color: #00AEEF;
+            color: #FFFFFF;
+            transform: translateY(-3px);
+        }
+
+        /* Dropdown */
+        .nav-item { position: relative; }
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: rgba(17,17,17,0.97);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 12px 0;
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 10px 24px;
+            color: rgba(255,255,255,0.7);
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .dropdown a:hover {
+            background: rgba(0,174,239,0.1);
+            color: #FFFFFF;
+            padding-left: 28px;
+        }
+
+        /* Stagger animation delay helper */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .delay-5 { transition-delay: 0.5s; }
+        .delay-6 { transition-delay: 0.6s; }
+        .delay-7 { transition-delay: 0.7s; }
+        .delay-8 { transition-delay: 0.8s; }
+
+        /* Inner page template */
+        .inner-hero {
+            padding: 180px 0 100px;
+            background: linear-gradient(135deg, #111111, #1a1a2e);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .inner-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse at 70% 30%, rgba(0,174,239,0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-section {
+                min-height: 100svh;
+            }
+        }
+
+        /* Smooth scrollbar for sections */
+        .scroll-section {
+            scroll-margin-top: 80px;
+        }
+
+        /* Image overlay gradient */
+        .img-overlay {
+            position: relative;
+        }
+
+        .img-overlay::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(17,17,17,0.6) 100%);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#platforms" class="nav-link">Platforms</a>
+        <a href="#commercial" class="nav-link">Commercial & Industrial</a>
+        <a href="#epc" class="nav-link">EPC Advantage</a>
+        <a href="#critical" class="nav-link">Critical Infrastructure</a>
+        <a href="#power-water" class="nav-link">Power + Water</a>
+        <a href="#resources" class="nav-link">Resources</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <div style="margin-top: 32px;">
+            <a href="#contact" class="btn-primary" style="width: 100%; justify-content: center;">Request Consultation</a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header transparent" id="header">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3">
+                    <img src="https://i.postimg.cc/DZznbbMC/logo-removebg-preview.png" alt="Winged Solar" class="h-10 w-auto">
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden xl:flex items-center gap-7">
+                    <a href="#home" class="nav-link">Home</a>
+                    <div class="nav-item">
+                        <a href="#platforms" class="nav-link">Platforms <i class="fas fa-chevron-down text-[10px] ml-1 opacity-60"></i></a>
+                        <div class="dropdown">
+                            <a href="#eagle">Eagle Platform</a>
+                            <a href="#hawk">Hawk Platform</a>
+                            <a href="#sparrow">Sparrow Platform</a>
+                        </div>
+                    </div>
+                    <div class="nav-item">
+                        <a href="#commercial" class="nav-link">Solutions <i class="fas fa-chevron-down text-[10px] ml-1 opacity-60"></i></a>
+                        <div class="dropdown">
+                            <a href="#commercial">Commercial & Industrial</a>
+                            <a href="#epc">EPC Advantage</a>
+                            <a href="#critical">Critical Infrastructure</a>
+                            <a href="#power-water">Power + Water</a>
+                        </div>
+                    </div>
+                    <a href="#resources" class="nav-link">Resources</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </nav>
+
+                <!-- Right CTA -->
+                <div class="hidden xl:flex items-center gap-4">
+                    <a href="#contact" class="btn-primary text-sm px-6 py-3">
+                        Request Consultation <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Mobile Toggle -->
+                <button class="xl:hidden text-white text-2xl" id="mobileToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section scroll-section" id="home">
+        <div class="hero-particles" id="particles"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 py-20 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7">
+                    <div class="fade-up">
+                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 mb-8">
+                            <span class="w-2 h-2 rounded-full bg-electric animate-pulse"></span>
+                            <span class="text-white/80 text-xs font-medium tracking-wider uppercase">Enterprise Solar Infrastructure</span>
+                        </div>
+                    </div>
+                    <h1 class="fade-up delay-1 font-grotek text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.08] mb-6">
+                        Deployable Solar<br>
+                        Infrastructure for<br>
+                        <span class="text-gradient">the Modern World</span>
+                    </h1>
+                    <p class="fade-up delay-2 text-white/65 text-lg lg:text-xl leading-relaxed mb-10 max-w-2xl">
+                        Factory-built solar platforms engineered for rapid deployment, scalable energy production, and mission-critical performance.
+                    </p>
+                    <div class="fade-up delay-3 flex flex-wrap gap-4">
+                        <a href="#contact" class="btn-primary">
+                            <i class="fas fa-calendar-alt"></i>
+                            Request Consultation
+                        </a>
+                        <a href="#platforms" class="btn-secondary">
+                            <i class="fas fa-cubes"></i>
+                            Explore Platforms
+                        </a>
+                    </div>
+                    <div class="fade-up delay-4 mt-8">
+                        <p class="text-white/30 text-xs tracking-wider uppercase mb-1">Brought to you by</p>
+                        <p class="text-white/50 text-sm font-medium">EnPower Star</p>
+                    </div>
+                </div>
+
+                <!-- Stats Column -->
+                <div class="lg:col-span-5">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="stat-card fade-up delay-2">
+                            <div class="text-electric text-2xl mb-2"><i class="fas fa-bolt"></i></div>
+                            <p class="text-white font-grotek font-bold text-xl mb-1">Rapid</p>
+                            <p class="text-white/50 text-sm">Deployment</p>
+                        </div>
+                        <div class="stat-card fade-up delay-3">
+                            <div class="text-energy text-2xl mb-2"><i class="fas fa-industry"></i></div>
+                            <p class="text-white font-grotek font-bold text-xl mb-1">Factory</p>
+                            <p class="text-white/50 text-sm">Built</p>
+                        </div>
+                        <div class="stat-card fade-up delay-4">
+                            <div class="text-electric text-2xl mb-2"><i class="fas fa-shield-alt"></i></div>
+                            <p class="text-white font-grotek font-bold text-xl mb-1">Mission</p>
+                            <p class="text-white/50 text-sm">Critical</p>
+                        </div>
+                        <div class="stat-card fade-up delay-5">
+                            <div class="text-energy text-2xl mb-2"><i class="fas fa-expand-arrows-alt"></i></div>
+                            <p class="text-white font-grotek font-bold text-xl mb-1">Scalable</p>
+                            <p class="text-white/50 text-sm">Infrastructure</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-50 animate-bounce">
+            <span class="text-white/40 text-xs tracking-widest uppercase">Scroll</span>
+            <i class="fas fa-chevron-down text-white/40 text-sm"></i>
+        </div>
+    </section>
+
+    <!-- Key Benefits Section -->
+    <section class="py-24 lg:py-32 bg-white grid-pattern scroll-section" id="benefits">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 fade-up">
+                <div class="section-divider mx-auto"></div>
+                <p class="text-electric font-semibold text-sm tracking-widest uppercase mb-4">Key Advantages</p>
+                <h2 class="font-grotek text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal mb-5">
+                    Engineered for <span class="text-gradient">Performance</span>
+                </h2>
+                <p class="text-steel text-lg max-w-2xl mx-auto">Purpose-built solar infrastructure designed for rapid field deployment, industrial reliability, and scalable energy production.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="benefit-card fade-up delay-1">
+                    <div class="benefit-icon"><i class="fas fa-rocket"></i></div>
+                    <h3 class="font-grotek font-bold text-xl text-charcoal mb-3">Rapid Deployment</h3>
+                    <p class="text-steel text-sm leading-relaxed">Pre-engineered systems deploy in days, not months. Minimize construction timelines and accelerate energy production from day one.</p>
+                </div>
+
+                <div class="benefit-card fade-up delay-2">
+                    <div class="benefit-icon"><i class="fas fa-cogs"></i></div>
+                    <h3 class="font-grotek font-bold text-xl text-charcoal mb-3">Factory-Built Systems</h3>
+                    <p class="text-steel text-sm leading-relaxed">Quality-controlled manufacturing ensures consistent performance. Every unit arrives fully integrated and field-tested for immediate operation.</p>
+                </div>
+
+                <div class="benefit-card fade-up delay-3">
+                    <div class="benefit-icon"><i class="fas fa-hard-hat"></i></div>
+                    <h3 class="font-grotek font-bold text-xl text-charcoal mb-3">Reduced Site Labor</h3>
+                    <p class="text-steel text-sm leading-relaxed">Dramatically reduce on-site labor requirements and complexity. Our systems require minimal skilled labor for installation and commissioning.</p>
+                </div>
+
+                <div class="benefit-card fade-up delay-4">
+                    <div class="benefit-icon"><i class="fas fa-layer-group"></i></div>
+                    <h3 class="font-grotek font-bold text-xl text-charcoal mb-3">Scalable Infrastructure</h3>
+                    <p class="text-steel text-sm leading-relaxed">Modular architecture enables seamless scaling from kW to MW. Expand capacity as your energy demands grow without infrastructure redesign.</p>
+                </div>
+
+                <div class="benefit-card fade-up delay-5">
+                    <div class="benefit-icon"><i class="fas fa-battery-full"></i></div>
+                    <h3 class="font-grotek font-bold text-xl text-charcoal mb-3">Integrated Storage</h3>
+                    <p class="text-steel text-sm leading-relaxed">Built-in energy storage options provide grid independence and 24/7 power availability for mission-critical operations and peak shaving.</p>
+                </div>
+
+                <div class="benefit-card fade-up delay-6">
+                    <div class="benefit-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3 class="font-grotek font-bold text-xl text-charcoal mb-3">Mission-Critical Reliability</h3>
+                    <p class="text-steel text-sm leading-relaxed">Industrial-grade components and engineering ensure 99.9%+ uptime. Designed to perform in the most demanding environments worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Family Section -->
+    <section class="py-24 lg:py-32 bg-gray-50 scroll-section" id="platforms">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 fade-up">
+                <div class="section-divider mx-auto"></div>
+                <p class="text-electric font-semibold text-sm tracking-widest uppercase mb-4">Product Family</p>
+                <h2 class="font-grotek text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal mb-5">
+                    Platform <span class="text-gradient">Solutions</span>
+                </h2>
+                <p class="text-steel text-lg max-w-2xl mx-auto">From utility-scale deployments to compact portable solutions, our platform family addresses every energy infrastructure need.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Eagle -->
+                <div class="product-card fade-up delay-1" id="eagle">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=80" alt="Eagle Platform">
+                        <div class="product-badge">High Density</div>
+                    </div>
+                    <div class="p-7">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-electric"><i class="fas fa-solar-panel"></i></span>
+                            <span class="text-xs font-semibold text-electric tracking-wider uppercase">Eagle Series</span>
+                        </div>
+                        <h3 class="font-grotek font-bold text-2xl text-charcoal mb-3">Eagle</h3>
+                        <p class="text-steel text-sm leading-relaxed mb-5">High-density deployable solar infrastructure engineered for utility-scale energy production and industrial applications.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-gray-100 text-steel text-xs rounded-full font-medium">500kW+</span>
+                            <span class="px-3 py-1 bg-gray-100 text-steel text-xs rounded-full font-medium">High Density</span>
+                            <span class="px-3 py-1 bg-gray-100 text-steel text-xs rounded-full font-medium">Grid-Scale</span>
+                        </div>
+                        <a href="#" class="inline-flex items-center gap-2 text-electric font-semibold text-sm hover:gap-3 transition-all">
+                            Learn More <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hawk -->
+                <div class="product-card fade-up delay-2" id="hawk">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=600&q=80" alt="Hawk Platform">
+                        <div class="product-badge">Mobile Ready</div>
+                    </div>
+                    <div class="p-7">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-energy"><i class="fas fa-battery-three-quarters"></i></span>
+                            <span class="text-xs font-semibold text-energy tracking-wider uppercase">Hawk Series</span>
+                        </div>
+                        <h3 class="font-grotek font-bold text-2xl text-charcoal mb-3">Hawk</h3>
+                        <p class="text-steel text-sm leading-relaxed mb-5">Mobile solar and storage platform designed for flexible deployment, remote operations, and rapid field repositioning.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-gray-100 text-steel text-xs rounded-full font-medium">50-500kW</span>
+                            <span class="px-3 py-1 bg-gray-100 text-steel text-xs rounded-full font-medium">Mobile</span>
+                            <span class="px-3 py-1 bg-gray-100 text-steel text-xs rounded-full font-medium">Storage</span>
+                        </div>
+                        <a href="#" class="inline-flex items-center gap-2 text-electric font-semibold text-sm hover:gap-3 transition-all">
+                            Learn More <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Sparrow -->
+                <div class="product-card fade-up delay-3" id="sparrow">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=600&q=80" alt="Sparrow Platform">
+                        <div class="product-badge">Portable</div>
+                    </div>
+                    <div class="p-7">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-metallic"><i class="fas fa-suitcase-rolling"></i></span>
+                            <span class="text-xs font-semibold text-steel tracking-wider uppercase">Sparrow Series</span>
+                        </div>
+                        <h3 class="font-grotek font-bold text-2xl text-charcoal mb-3">Sparrow</h3>
+                        <p class="text-steel text-sm leading-relaxed mb-5">Compact portable solar and storage solution for temporary installations, disaster response, and field operations.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-gray-100 text-steel text-xs rounded-full font-medium">5-50kW</span>
+                            <span class="px-3 py-1 bg-gray-100 text-steel text-xs rounded-full font-medium">Compact</span>
+                            <span class="px-3 py-1 bg-gray-100 text-steel text-xs rounded-full font-medium">Portable</span>
+                        </div>
+                        <a href="#" class="inline-flex items-center gap-2 text-electric font-semibold text-sm hover:gap-3 transition-all">
+                            Learn More <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Served -->
+    <section class="py-24 lg:py-32 bg-white scroll-section" id="commercial">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 fade-up">
+                <div class="section-divider mx-auto"></div>
+                <p class="text-electric font-semibold text-sm tracking-widest uppercase mb-4">Industries Served</p>
+                <h2 class="font-grotek text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal mb-5">
+                    Powering <span class="text-gradient">Every Sector</span>
+                </h2>
+                <p class="text-steel text-lg max-w-2xl mx-auto">Our deployable solar infrastructure serves mission-critical applications across diverse industries and challenging environments.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5" id="epc">
+                <div class="industry-card fade-up delay-1">
+                    <div class="industry-icon"><i class="fas fa-building"></i></div>
+                    <h3 class="font-grotek font-bold text-base text-charcoal mb-2">Commercial & Industrial</h3>
+                    <p class="text-steel text-xs">On-site power for manufacturing, warehouses, and commercial facilities</p>
+                </div>
+
+                <div class="industry-card fade-up delay-2">
+                    <div class="industry-icon"><i class="fas fa-drafting-compass"></i></div>
+                    <h3 class="font-grotek font-bold text-base text-charcoal mb-2">EPC Advantage</h3>
+                    <p class="text-steel text-xs">Streamlined solutions for engineering, procurement, and construction firms</p>
+                </div>
+
+                <div class="industry-card fade-up delay-3">
+                    <div class="industry-icon"><i class="fas fa-server"></i></div>
+                    <h3 class="font-grotek font-bold text-base text-charcoal mb-2">Critical Infrastructure</h3>
+                    <p class="text-steel text-xs">Reliable power for data centers, hospitals, and essential services</p>
+                </div>
+
+                <div class="industry-card fade-up delay-4" id="critical">
+                    <div class="industry-icon"><i class="fas fa-broadcast-tower"></i></div>
+                    <h3 class="font-grotek font-bold text-base text-charcoal mb-2">Telecom</h3>
+                    <p class="text-steel text-xs">Off-grid power for cell towers, repeater stations, and network infrastructure</p>
+                </div>
+
+                <div class="industry-card fade-up delay-5">
+                    <div class="industry-icon"><i class="fas fa-charging-station"></i></div>
+                    <h3 class="font-grotek font-bold text-base text-charcoal mb-2">EV Charging</h3>
+                    <p class="text-steel text-xs">Solar-powered charging infrastructure for fleet and public EV networks</p>
+                </div>
+
+                <div class="industry-card fade-up delay-6">
+                    <div class="industry-icon"><i class="fas fa-satellite-dish"></i></div>
+                    <h3 class="font-grotek font-bold text-base text-charcoal mb-2">Remote Power</h3>
+                    <p class="text-steel text-xs">Reliable energy for remote sites, mining operations, and field camps</p>
+                </div>
+
+                <div class="industry-card fade-up delay-7">
+                    <div class="industry-icon"><i class="fas fa-first-aid"></i></div>
+                    <h3 class="font-grotek font-bold text-base text-charcoal mb-2">Disaster Response</h3>
+                    <p class="text-steel text-xs">Rapid-deploy power for emergency operations and humanitarian aid</p>
+                </div>
+
+                <div class="industry-card fade-up delay-8" id="power-water">
+                    <div class="industry-icon"><i class="fas fa-tint"></i></div>
+                    <h3 class="font-grotek font-bold text-base text-charcoal mb-2">Power + Water</h3>
+                    <p class="text-steel text-xs">Integrated solar and water treatment systems for communities</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Power + Water Section -->
+    <section class="py-24 lg:py-32 water-section scroll-section">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div class="fade-left">
+                    <div class="relative rounded-2xl overflow-hidden" style="aspect-ratio: 4/3;">
+                        <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&q=80" alt="Power and Water Infrastructure" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-charcoal/40 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/15 backdrop-blur-md">
+                                <i class="fas fa-tint text-electric"></i>
+                                <span class="text-white text-sm font-medium">Integrated Systems</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-right">
+                    <div class="section-divider"></div>
+                    <p class="text-electric font-semibold text-sm tracking-widest uppercase mb-4">Power + Water</p>
+                    <h2 class="font-grotek text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal mb-6 leading-tight">
+                        Integrated Energy &<br>
+                        <span class="text-gradient">Water Infrastructure</span>
+                    </h2>
+                    <p class="text-steel text-lg leading-relaxed mb-8">
+                        Our Power + Water solutions combine solar energy generation with advanced water treatment and purification systems, delivering essential infrastructure to communities and operations worldwide.
+                    </p>
+
+                    <div class="space-y-5 mb-10">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-electric/10 flex items-center justify-center text-electric">
+                                <i class="fas fa-solar-panel"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-grotek font-bold text-charcoal mb-1">Solar-Powered Water Treatment</h4>
+                                <p class="text-steel text-sm">Clean energy drives reverse osmosis, UV treatment, and desalination systems for sustainable water production.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-energy/10 flex items-center justify-center text-energy">
+                                <i class="fas fa-plug"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-grotek font-bold text-charcoal mb-1">Grid-Independent Operation</h4>
+                                <p class="text-steel text-sm">Fully off-grid capability with integrated storage ensures 24/7 water and power availability in remote locations.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-electric/10 flex items-center justify-center text-electric">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-grotek font-bold text-charcoal mb-1">Scalable Design</h4>
+                                <p class="text-steel text-sm">Modular architecture scales from village-level to municipal water treatment with minimal engineering changes.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#contact" class="btn-dark">
+                        <i class="fas fa-file-alt"></i>
+                        Request a Proposal
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Winged Solar Timeline -->
+    <section class="py-24 lg:py-32 bg-white scroll-section" id="about">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-start">
+                <div class="fade-left">
+                    <div class="section-divider"></div>
+                    <p class="text-electric font-semibold text-sm tracking-widest uppercase mb-4">Why Winged Solar™</p>
+                    <h2 class="font-grotek text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal mb-6 leading-tight">
+                        The Infrastructure-Grade<br>
+                        <span class="text-gradient">Advantage</span>
+                    </h2>
+                    <p class="text-steel text-lg leading-relaxed mb-8">
+                        Built on decades of engineering expertise, our platform approach redefines how solar infrastructure is designed, manufactured, deployed, and maintained.
+                    </p>
+                    <a href="#contact" class="btn-primary">
+                        <i class="fas fa-handshake"></i>
+                        Partner With Us
+                    </a>
+                </div>
+
+                <div class="space-y-8 fade-right">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                            <h3 class="font-grotek font-bold text-lg text-charcoal mb-2">Faster Deployment</h3>
+                            <p class="text-steel text-sm leading-relaxed">Deploy in days instead of months. Factory-built systems arrive pre-integrated, dramatically reducing on-site construction time and complexity.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                            <h3 class="font-grotek font-bold text-lg text-charcoal mb-2">Lower Construction Costs</h3>
+                            <p class="text-steel text-sm leading-relaxed">Reduce total project costs by up to 40% compared to traditional stick-built solar installations through streamlined manufacturing and deployment.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                            <h3 class="font-grotek font-bold text-lg text-charcoal mb-2">Proven Engineering</h3>
+                            <p class="text-steel text-sm leading-relaxed">Every platform is designed by licensed engineers and tested to meet or exceed industry standards for structural, electrical, and environmental performance.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                            <h3 class="font-grotek font-bold text-lg text-charcoal mb-2">Scalable Systems</h3>
+                            <p class="text-steel text-sm leading-relaxed">Modular architecture allows seamless expansion from single units to multi-megawatt installations with standardized interconnection protocols.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                            <h3 class="font-grotek font-bold text-lg text-charcoal mb-2">Long-Term Reliability</h3>
+                            <p class="text-steel text-sm leading-relaxed">Industrial-grade components and engineering deliver 25+ year operational lifetimes with minimal maintenance requirements and maximum uptime.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                            <h3 class="font-grotek font-bold text-lg text-charcoal mb-2">Infrastructure-Grade Performance</h3>
+                            <p class="text-steel text-sm leading-relaxed">Designed and certified as permanent infrastructure, not temporary equipment. Built to withstand extreme weather, seismic events, and harsh environments.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study / Impact Section -->
+    <section class="counter-section py-24 lg:py-32 scroll-section" id="resources">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 fade-up">
+                <div class="section-divider mx-auto"></div>
+                <p class="text-electric font-semibold text-sm tracking-widest uppercase mb-4">Proven Impact</p>
+                <h2 class="font-grotek text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-5">
+                    Performance <span class="text-gradient">Numbers</span>
+                </h2>
+                <p class="text-white/50 text-lg max-w-2xl mx-auto">Real-world results from our global portfolio of deployable solar infrastructure installations.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="counter-card fade-up delay-1">
+                    <div class="text-electric text-3xl mb-4"><i class="fas fa-project-diagram"></i></div>
+                    <div class="font-grotek text-4xl lg:text-5xl font-bold text-white mb-2">
+                        <span class="counter" data-target="247">0</span>+
+                    </div>
+                    <p class="text-white/50 text-sm font-medium">Projects Deployed</p>
+                </div>
+
+                <div class="counter-card fade-up delay-2">
+                    <div class="text-energy text-3xl mb-4"><i class="fas fa-clock"></i></div>
+                    <div class="font-grotek text-4xl lg:text-5xl font-bold text-white mb-2">
+                        <span class="counter" data-target="72">0</span>h
+                    </div>
+                    <p class="text-white/50 text-sm font-medium">Avg. Deployment Speed</p>
+                </div>
+
+                <div class="counter-card fade-up delay-3">
+                    <div class="text-electric text-3xl mb-4"><i class="fas fa-bolt"></i></div>
+                    <div class="font-grotek text-4xl lg:text-5xl font-bold text-white mb-2">
+                        <span class="counter" data-target="180">0</span>MW
+                    </div>
+                    <p class="text-white/50 text-sm font-medium">Total Energy Output</p>
+                </div>
+
+                <div class="counter-card fade-up delay-4">
+                    <div class="text-energy text-3xl mb-4"><i class="fas fa-check-circle"></i></div>
+                    <div class="font-grotek text-4xl lg:text-5xl font-bold text-white mb-2">
+                        <span class="counter" data-target="99" data-suffix=".9%">0</span>
+                    </div>
+                    <p class="text-white/50 text-sm font-medium">Reliability Rate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interior Page Template (Eagle Product Detail Example) -->
+    <section class="py-24 lg:py-32 bg-white scroll-section">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="inner-hero rounded-3xl p-8 lg:p-16 relative overflow-hidden mb-16 scale-in">
+                <div class="relative z-10">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 mb-6">
+                        <span class="text-electric text-xs font-semibold tracking-wider uppercase">Eagle Series</span>
+                    </div>
+                    <h2 class="font-grotek text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+                        Eagle Platform
+                    </h2>
+                    <p class="text-white/60 text-lg max-w-2xl">
+                        High-density deployable solar infrastructure for utility-scale and industrial applications. Engineered for maximum energy output per square foot.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Overview -->
+                <div class="lg:col-span-2 space-y-8 fade-up">
+                    <div>
+                        <h3 class="font-grotek font-bold text-2xl text-charcoal mb-4">Overview</h3>
+                        <p class="text-steel leading-relaxed mb-4">
+                            The Eagle platform represents the pinnacle of deployable solar infrastructure. Designed for large-scale energy projects, Eagle systems deliver maximum power density with minimal site preparation and construction complexity.
+                        </p>
+                        <p class="text-steel leading-relaxed">
+                            Each Eagle unit is factory-built, fully integrated, and tested before shipment, ensuring consistent quality and rapid commissioning in the field.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="font-grotek font-bold text-2xl text-charcoal mb-4">Key Features</h3>
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
+                                <i class="fas fa-check text-electric mt-1"></i>
+                                <span class="text-steel text-sm">High-efficiency bifacial modules</span>
+                            </div>
+                            <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
+                                <i class="fas fa-check text-electric mt-1"></i>
+                                <span class="text-steel text-sm">Integrated string inverters</span>
+                            </div>
+                            <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
+                                <i class="fas fa-check text-electric mt-1"></i>
+                                <span class="text-steel text-sm">Self-ballasted foundation</span>
+                            </div>
+                            <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
+                                <i class="fas fa-check text-electric mt-1"></i>
+                                <span class="text-steel text-sm">Remote monitoring & diagnostics</span>
+                            </div>
+                            <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
+                                <i class="fas fa-check text-electric mt-1"></i>
+                                <span class="text-steel text-sm">Optional battery integration</span>
+                            </div>
+                            <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
+                                <i class="fas fa-check text-electric mt-1"></i>
+                                <span class="text-steel text-sm">Wind-rated to 130+ mph</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="font-grotek font-bold text-2xl text-charcoal mb-4">Applications</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-4 py-2 bg-charcoal text-white text-sm rounded-lg">Utility-Scale Solar</span>
+                            <span class="px-4 py-2 bg-gray-100 text-steel text-sm rounded-lg">Industrial Parks</span>
+                            <span class="px-4 py-2 bg-gray-100 text-steel text-sm rounded-lg">Mining Operations</span>
+                            <span class="px-4 py-2 bg-gray-100 text-steel text-sm rounded-lg">Military Installations</span>
+                            <span class="px-4 py-2 bg-gray-100 text-steel text-sm rounded-lg">Data Centers</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Specifications Sidebar -->
+                <div class="fade-right">
+                    <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 sticky top-28">
+                        <h3 class="font-grotek font-bold text-xl text-charcoal mb-6">Technical Specifications</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center py-3 border-b border-gray-200">
+                                <span class="text-steel text-sm">Power Output</span>
+                                <span class="font-grotek font-bold text-charcoal">500kW - 2MW</span>
+                            </div>
+                            <div class="flex justify-between items-center py-3 border-b border-gray-200">
+                                <span class="text-steel text-sm">Deployment Time</span>
+                                <span class="font-grotek font-bold text-charcoal">3-5 Days</span>
+                            </div>
+                            <div class="flex justify-between items-center py-3 border-b border-gray-200">
+                                <span class="text-steel text-sm">Module Type</span>
+                                <span class="font-grotek font-bold text-charcoal">Bifacial</span>
+                            </div>
+                            <div class="flex justify-between items-center py-3 border-b border-gray-200">
+                                <span class="text-steel text-sm">Wind Rating</span>
+                                <span class="font-grotek font-bold text-charcoal">130+ mph</span>
+                            </div>
+                            <div class="flex justify-between items-center py-3 border-b border-gray-200">
+                                <span class="text-steel text-sm">Design Life</span>
+                                <span class="font-grotek font-bold text-charcoal">25+ Years</span>
+                            </div>
+                            <div class="flex justify-between items-center py-3">
+                                <span class="text-steel text-sm">Certifications</span>
+                                <span class="font-grotek font-bold text-charcoal">UL, IEC, NEC</span>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <a href="#contact" class="btn-primary w-full justify-center">
+                                <i class="fas fa-file-download"></i>
+                                Download Specs
+                            </a>
+                        </div>
+                        <div class="mt-3">
+                            <a href="#contact" class="btn-dark w-full justify-center">
+                                <i class="fas fa-phone"></i>
+                                Request Quote
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-24 lg:py-32 bg-gray-50 scroll-section" id="contact">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 fade-up">
+                <div class="section-divider mx-auto"></div>
+                <p class="text-electric font-semibold text-sm tracking-widest uppercase mb-4">Get In Touch</p>
+                <h2 class="font-grotek text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal mb-5">
+                    Start Your <span class="text-gradient">Project</span>
+                </h2>
+                <p class="text-steel text-lg max-w-2xl mx-auto">Ready to explore deployable solar infrastructure for your organization? Our team is here to help design the right solution.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-5 gap-8">
+                <!-- Contact Form -->
+                <div class="lg:col-span-3 fade-up">
+                    <div class="bg-white rounded-2xl p-8 lg:p-10 shadow-lg border border-gray-100">
+                        <h3 class="font-grotek font-bold text-2xl text-charcoal mb-6">Request a Consultation</h3>
+                        <form id="contactForm" class="space-y-5">
+                            <div class="grid sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-sm font-medium text-charcoal mb-2">Full Name *</label>
+                                    <input type="text" class="form-input" placeholder="John Doe" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-charcoal mb-2">Email Address *</label>
+                                    <input type="email" class="form-input" placeholder="john@company.com" required>
+                                </div>
+                            </div>
+                            <div class="grid sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-sm font-medium text-charcoal mb-2">Company</label>
+                                    <input type="text" class="form-input" placeholder="Company Name">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-charcoal mb-2">Phone</label>
+                                    <input type="tel" class="form-input" placeholder="+1 (555) 000-0000">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-charcoal mb-2">Project Type *</label>
+                                <select class="form-input" required>
+                                    <option value="" disabled selected>Select project type</option>
+                                    <option>Commercial & Industrial</option>
+                                    <option>Critical Infrastructure</option>
+                                    <option>Telecom</option>
+                                    <option>EV Charging</option>
+                                    <option>Remote Power</option>
+                                    <option>Disaster Response</option>
+                                    <option>Power + Water</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-charcoal mb-2">Project Details</label>
+                                <textarea class="form-input" rows="5" placeholder="Tell us about your project requirements, timeline, and energy needs..."></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary w-full justify-center text-base py-4">
+                                <i class="fas fa-paper-plane"></i>
+                                Schedule a Consultation
+                            </button>
+                            <p class="text-steel text-xs text-center">By submitting this form, you agree to our privacy policy and terms of service.</p>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Contact Info + Map -->
+                <div class="lg:col-span-2 space-y-6 fade-right">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                        <h3 class="font-grotek font-bold text-xl text-charcoal mb-6">Contact Information</h3>
+                        <div class="space-y-5">
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-electric/10 flex items-center justify-center text-electric">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <p class="text-steel text-xs uppercase tracking-wider mb-1">Phone</p>
+                                    <p class="font-grotek font-bold text-charcoal">+1 (888) 946-4337</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-electric/10 flex items-center justify-center text-electric">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <p class="text-steel text-xs uppercase tracking-wider mb-1">Email</p>
+                                    <p class="font-grotek font-bold text-charcoal">info@wingedsolar.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-electric/10 flex items-center justify-center text-electric">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <p class="text-steel text-xs uppercase tracking-wider mb-1">Address</p>
+                                    <p class="font-grotek font-bold text-charcoal">Phoenix, Arizona</p>
+                                    <p class="text-steel text-sm">United States</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-electric/10 flex items-center justify-center text-electric">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <p class="text-steel text-xs uppercase tracking-wider mb-1">Business Hours</p>
+                                    <p class="font-grotek font-bold text-charcoal">Mon - Fri: 8:00 AM - 6:00 PM</p>
+                                    <p class="text-steel text-sm">MST (Arizona)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Google Map -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d425261.09837536063!2d-112.32144122303016!3d33.44837613645767!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x872b12ed50a179cb%3A0x8c69c7f8354a1fb1!2sPhoenix%2C%20AZ!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+                            width="100%"
+                            height="280"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 lg:py-28 relative overflow-hidden" style="background: linear-gradient(135deg, #111111 0%, #1a1a2e 50%, #111111 100%);">
+        <div class="absolute inset-0 opacity-20">
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(0,174,239,0.2) 0%, transparent 70%);"></div>
+        </div>
+        <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center relative z-10">
+            <div class="fade-up">
+                <p class="text-electric font-semibold text-sm tracking-widest uppercase mb-4">Ready to Deploy?</p>
+                <h2 class="font-grotek text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+                    Power Your Operations with<br>
+                    <span class="text-gradient">Deployable Solar Infrastructure</span>
+                </h2>
+                <p class="text-white/50 text-lg mb-10 max-w-2xl mx-auto">
+                    From initial consultation to commissioning, our team delivers enterprise-grade solar infrastructure solutions tailored to your requirements.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#contact" class="btn-primary text-base px-8 py-4">
+                        <i class="fas fa-calendar-alt"></i>
+                        Schedule Consultation
+                    </a>
+                    <a href="tel:+18889464337" class="btn-secondary text-base px-8 py-4">
+                        <i class="fas fa-phone"></i>
+                        Call +1 (888) 946-4337
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer py-16 lg:py-20">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-10 mb-16">
+                <!-- Brand Column -->
+                <div class="lg:col-span-2">
+                    <img src="https://i.postimg.cc/DZznbbMC/logo-removebg-preview.png" alt="Winged Solar" class="h-10 w-auto mb-5">
+                    <p class="text-white/45 text-sm leading-relaxed mb-6 max-w-sm">
+                        Deployable solar infrastructure engineered for rapid deployment, scalable energy production, and mission-critical performance worldwide.
+                    </p>
+                    <p class="text-white/30 text-xs mb-1">Brought to you by</p>
+                    <p class="text-white/50 text-sm font-medium">EnPower Star LLC</p>
+                    <div class="flex gap-3 mt-6">
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Products -->
+                <div>
+                    <h4 class="font-grotek font-bold text-white text-sm tracking-wider uppercase mb-5">Products</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#eagle" class="footer-link">Eagle Platform</a></li>
+                        <li><a href="#hawk" class="footer-link">Hawk Platform</a></li>
+                        <li><a href="#sparrow" class="footer-link">Sparrow Platform</a></li>
+                        <li><a href="#" class="footer-link">Energy Storage</a></li>
+                        <li><a href="#" class="footer-link">Monitoring Software</a></li>
+                    </ul>
+                </div>
+
+                <!-- Solutions -->
+                <div>
+                    <h4 class="font-grotek font-bold text-white text-sm tracking-wider uppercase mb-5">Solutions</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#commercial" class="footer-link">Commercial & Industrial</a></li>
+                        <li><a href="#critical" class="footer-link">Critical Infrastructure</a></li>
+                        <li><a href="#power-water" class="footer-link">Power + Water</a></li>
+                        <li><a href="#" class="footer-link">Telecom</a></li>
+                        <li><a href="#" class="footer-link">EV Charging</a></li>
+                        <li><a href="#" class="footer-link">Disaster Response</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company -->
+                <div>
+                    <h4 class="font-grotek font-bold text-white text-sm tracking-wider uppercase mb-5">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="footer-link">About Us</a></li>
+                        <li><a href="#resources" class="footer-link">Resources</a></li>
+                        <li><a href="#" class="footer-link">Case Studies</a></li>
+                        <li><a href="#" class="footer-link">Careers</a></li>
+                        <li><a href="#contact" class="footer-link">Contact</a></li>
+                        <li><a href="#" class="footer-link">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="pt-8 border-t border-white/10">
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <p class="text-white/30 text-sm text-center sm:text-left">
+                        © 2026 Winged Solar Solutions Inc. All rights reserved.Developed by Zannatul.
+                    </p>
+                    <p class="text-white/25 text-xs text-center sm:text-right">
+                        Brought to you by EnPower Star LLC
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 rounded-xl bg-charcoal text-white flex items-center justify-center shadow-lg z-50 opacity-0 pointer-events-none transition-all duration-300 hover:bg-electric hover:shadow-electric/30">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script>
+        // Header scroll effect
+        const header = document.getElementById('header');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 80) {
+                header.classList.remove('transparent');
+                header.classList.add('solid');
+            } else {
+                header.classList.remove('solid');
+                header.classList.add('transparent');
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('open');
+            mobileOverlay.classList.toggle('open');
+            document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+        }
+
+        mobileToggle.addEventListener('click', toggleMobileMenu);
+        mobileOverlay.addEventListener('click', toggleMobileMenu);
+
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('open')) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -80px 0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up, .fade-left, .fade-right, .scale-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Animated counters
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = entry.target.querySelectorAll('.counter');
+                    counters.forEach(counter => {
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        const suffix = counter.getAttribute('data-suffix') || '';
+                        const duration = 2000;
+                        const start = performance.now();
+
+                        function updateCounter(currentTime) {
+                            const elapsed = currentTime - start;
+                            const progress = Math.min(elapsed / duration, 1);
+
+                            // Ease out cubic
+                            const eased = 1 - Math.pow(1 - progress, 3);
+                            const current = Math.round(eased * target);
+
+                            counter.textContent = current + suffix;
+
+                            if (progress < 1) {
+                                requestAnimationFrame(updateCounter);
+                            }
+                        }
+
+                        requestAnimationFrame(updateCounter);
+                    });
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.counter-section').forEach(section => {
+            counterObserver.observe(section);
+        });
+
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 500) {
+                backToTop.style.opacity = '1';
+                backToTop.style.pointerEvents = 'auto';
+            } else {
+                backToTop.style.opacity = '0';
+                backToTop.style.pointerEvents = 'none';
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Hero particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 30;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (10 + Math.random() * 20) + 's';
+                particle.style.width = (1 + Math.random() * 2) + 'px';
+                particle.style.height = particle.style.width;
+                container.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = 80;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const btn = this.querySelector('button[type="submit"]');
+            const originalContent = btn.innerHTML;
+
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check"></i> Submitted Successfully!';
+                btn.style.background = 'linear-gradient(135deg, #10B981, #059669)';
+
+                setTimeout(() => {
+                    btn.innerHTML = originalContent;
+                    btn.style.background = '';
+                    btn.disabled = false;
+                    this.reset();
+                }, 3000);
+            }, 1500);
+        });
+
+        // Parallax effect for hero
+        window.addEventListener('scroll', () => {
+            const scrollY = window.pageYOffset;
+            const hero = document.querySelector('.hero-section');
+
+            if (scrollY < window.innerHeight) {
+                hero.style.backgroundPositionY = scrollY * 0.3 + 'px';
+            }
+        });
+
+        // Stagger animation on scroll for grid items
+        const staggerObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    const items = entry.target.querySelectorAll('.fade-up');
+                    items.forEach((item, i) => {
+                        item.style.transitionDelay = (i * 0.08) + 's';
+                    });
+                    staggerObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.grid').forEach(grid => {
+            staggerObserver.observe(grid);
+        });
+
+        // Active navigation highlighting
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.header .nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.color = '';
+                if (link.getAttribute('href') === '#' + current) {
+                    link.style.color = '#FFFFFF';
+                }
+            });
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            // Trigger initial scroll check
+            window.dispatchEvent(new Event('scroll'));
+        });
+    </script>
+
+</body>
+</html>
